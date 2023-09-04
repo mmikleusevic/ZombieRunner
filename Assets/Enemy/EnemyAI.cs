@@ -38,7 +38,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_distanceToTarget <= _chaseRange)
         {
-            Chase();
+            EngageTarget();
         }
         else if(_isChasing)
         {
@@ -50,14 +50,16 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    private void Chase()
+    private void EngageTarget()
     {
-        SetDestination(_target.position);
-        _isChasing = true;
-
-        if(_chasePersistTimer < INITIAL_CHASE_TIME)
+        if (_distanceToTarget > _navMeshAgent.stoppingDistance)
         {
-            _chasePersistTimer = INITIAL_CHASE_TIME;
+            Chase();
+        }
+        Debug.Log(_distanceToTarget);
+        if(_distanceToTarget <= _navMeshAgent.stoppingDistance)
+        {
+            AttackTarget();
         }
     }
 
@@ -65,7 +67,7 @@ public class EnemyAI : MonoBehaviour
     {
         if(_chasePersistTimer > 0)
         {
-            SetDestination(_target.position);
+            ChaseTarget(_target.position);
             _chasePersistTimer -= Time.deltaTime;
         }
         else
@@ -74,13 +76,29 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
+    private void Chase()
+    {
+        ChaseTarget(_target.position);
+        _isChasing = true;
+
+        if (_chasePersistTimer < INITIAL_CHASE_TIME)
+        {
+            _chasePersistTimer = INITIAL_CHASE_TIME;
+        }
+    }
+
+    private void AttackTarget()
+    {
+        Debug.Log(name + " has attacked " + _target.name);
+    }
+
     private void ReturnToInitialPosition()
     {
-        SetDestination(_initialPosition);
+        ChaseTarget(_initialPosition);
         _chasePersistTimer = INITIAL_CHASE_TIME;
     }
 
-    private void SetDestination(Vector3 position)
+    private void ChaseTarget(Vector3 position)
     {
         _navMeshAgent.SetDestination(position);
     }
