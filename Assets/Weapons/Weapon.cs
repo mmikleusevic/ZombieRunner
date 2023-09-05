@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,14 +14,14 @@ public class Weapon : MonoBehaviour
 
 
     private void Update()
-    {    
+    {
         bool isActive = _fire.ReadValue<float>() > 0.5;
 
         if (isActive && _weaponCooldownTimer <= 0)
         {
             Shoot();
-        }     
-        
+        }
+
         _weaponCooldownTimer -= Time.deltaTime;
     }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -40,11 +39,11 @@ public class EnemyAI : MonoBehaviour
         {
             EngageTarget();
         }
-        else if(_isChasing)
+        else if (_isChasing)
         {
             PersistChase();
         }
-        else if(!_isChasing && Vector3.Distance(transform.position, _initialPosition) > 0.1f)
+        else if (!_isChasing && Vector3.Distance(transform.position, _initialPosition) > 0.1f)
         {
             ReturnToInitialPosition();
         }
@@ -57,7 +56,7 @@ public class EnemyAI : MonoBehaviour
             Chase();
         }
 
-        if(_distanceToTarget <= _navMeshAgent.stoppingDistance)
+        if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
         {
             AttackTarget();
         }
@@ -65,7 +64,7 @@ public class EnemyAI : MonoBehaviour
 
     private void PersistChase()
     {
-        if(_chasePersistTimer > 0)
+        if (_chasePersistTimer > 0)
         {
             ChaseTarget(_target.position);
             _chasePersistTimer -= Time.deltaTime;
