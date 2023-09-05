@@ -50,10 +50,16 @@ public class EnemyAI : MonoBehaviour
         {
             ReturnToInitialPosition();
         }
+        else if(!_isChasing)
+        {
+            Idle();
+        }
     }
 
     private void EngageTarget()
     {
+        _navMeshAgent.stoppingDistance = 4f;
+
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
         {
             Chase();
@@ -82,6 +88,7 @@ public class EnemyAI : MonoBehaviour
     {
         SetPosition(_target.position);
         GetComponent<Animator>().SetTrigger(MOVE);
+        GetComponent<Animator>().SetBool(ATTACK, false);
 
         _isChasing = true;
 
@@ -99,12 +106,20 @@ public class EnemyAI : MonoBehaviour
 
     private void ReturnToInitialPosition()
     {
-        GetComponent<Animator>().SetTrigger(IDLE);
+        _navMeshAgent.stoppingDistance = 0f;
+
+        GetComponent<Animator>().SetTrigger(MOVE);
         GetComponent<Animator>().SetBool(ATTACK, false);
 
         SetPosition(_initialPosition);
 
         _chasePersistTimer = INITIAL_CHASE_TIME;
+    }
+
+    private void Idle()
+    {
+        GetComponent<Animator>().SetBool(ATTACK, false);
+        GetComponent<Animator>().SetTrigger(IDLE);
     }
 
     private void SetPosition(Vector3 position)
