@@ -56,7 +56,7 @@ public class EnemyAI : MonoBehaviour
         {
             Chase();
         }
-        Debug.Log(_distanceToTarget);
+
         if(_distanceToTarget <= _navMeshAgent.stoppingDistance)
         {
             AttackTarget();
