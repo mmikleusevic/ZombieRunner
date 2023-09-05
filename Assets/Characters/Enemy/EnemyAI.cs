@@ -13,6 +13,9 @@ public class EnemyAI : MonoBehaviour
     bool _isChasing = false;
 
     static float INITIAL_CHASE_TIME = 5f;
+    static string IDLE = "Idle";
+    static string MOVE = "Move";
+    static string ATTACK = "Attack";
 
     private void Start()
     {
@@ -66,7 +69,7 @@ public class EnemyAI : MonoBehaviour
     {
         if (_chasePersistTimer > 0)
         {
-            ChaseTarget(_target.position);
+            SetPosition(_target.position);
             _chasePersistTimer -= Time.deltaTime;
         }
         else
@@ -77,8 +80,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Chase()
     {
-        ChaseTarget(_target.position);
+        SetPosition(_target.position);
+        GetComponent<Animator>().SetTrigger(MOVE);
+
         _isChasing = true;
+
 
         if (_chasePersistTimer < INITIAL_CHASE_TIME)
         {
@@ -88,16 +94,20 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        Debug.Log(name + " has attacked " + _target.name);
+        GetComponent<Animator>().SetBool(ATTACK, true);
     }
 
     private void ReturnToInitialPosition()
     {
-        ChaseTarget(_initialPosition);
+        GetComponent<Animator>().SetTrigger(IDLE);
+        GetComponent<Animator>().SetBool(ATTACK, false);
+
+        SetPosition(_initialPosition);
+
         _chasePersistTimer = INITIAL_CHASE_TIME;
     }
 
-    private void ChaseTarget(Vector3 position)
+    private void SetPosition(Vector3 position)
     {
         _navMeshAgent.SetDestination(position);
     }
