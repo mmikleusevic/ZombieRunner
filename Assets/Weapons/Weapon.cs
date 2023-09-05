@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,8 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera _FPCamera;
     [SerializeField] float _range = 100f;
     [SerializeField] float _damage = 30f;
+    [SerializeField] GameObject _hitVFX;
+
     float _weaponCooldownTimer = COOLDOWN_TIME;
 
     static float COOLDOWN_TIME = 0.1f;
@@ -39,13 +42,14 @@ public class Weapon : MonoBehaviour
     private void ProcessRaycast()
     {
         _weaponCooldownTimer = COOLDOWN_TIME;
+
         RaycastHit hit;
         if (Physics.Raycast(_FPCamera.transform.position, _FPCamera.transform.forward, out hit, _range))
         {
+            ProccessHitImpact(hit);
+
             EnemyHealth target = hit.transform.GetComponent<EnemyHealth>();
 
-            // TODO: add some hit effect for visual players
-            // call a method on EnemyHealth that decreases enemy's health
             if (target == null) return;
 
             target.TakeDamage(_damage);
@@ -54,6 +58,13 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void ProccessHitImpact(RaycastHit hit)
+    {
+        GameObject impact = Instantiate(_hitVFX, hit.point, Quaternion.LookRotation(hit.normal));
+
+        Destroy(impact, 0.1f);
     }
 
     void OnEnable()
