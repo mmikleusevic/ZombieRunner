@@ -28,6 +28,10 @@ namespace StarterAssets
             starterAssetsInputs.SprintInput(virtualSprintState);
         }
 
+        public void VirtualZoomInput(bool virtualZoomState)
+        {
+            starterAssetsInputs.ZoomInput(virtualZoomState);
+        }
     }
 
 }

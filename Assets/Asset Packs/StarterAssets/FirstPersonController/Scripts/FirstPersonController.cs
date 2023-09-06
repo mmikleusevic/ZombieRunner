@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Cinemachine;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
 #endif
@@ -11,6 +12,8 @@ namespace StarterAssets
 #endif
     public class FirstPersonController : MonoBehaviour
     {
+        [SerializeField] CinemachineVirtualCamera _virtualCamera;
+
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
         public float MoveSpeed = 4.0f;
@@ -72,6 +75,12 @@ namespace StarterAssets
         private StarterAssetsInputs _input;
         private GameObject _mainCamera;
 
+        // zoom
+        bool _isZoomed = false;
+        float ZoomedOutFOV = 40f;
+        float ZoomedInFOV = 20f;
+
+
         private const float _threshold = 0.01f;
 
         private bool IsCurrentDeviceMouse
@@ -108,6 +117,7 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+            _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
         }
 
         private void Update()
@@ -115,6 +125,7 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+            ToggleZoom();
         }
 
         private void LateUpdate()
@@ -244,6 +255,38 @@ namespace StarterAssets
             {
                 _verticalVelocity += Gravity * Time.deltaTime;
             }
+        }
+
+        public void ToggleZoom()
+        {
+            if(_input.zoom)
+            {
+                if (_isZoomed)
+                {
+                    ZoomOut();
+                }
+                else
+                {
+                    ZoomIn();
+                }
+            }
+            _input.zoom = false;
+        }
+
+        public void ZoomIn()
+        {
+            if (_virtualCamera == null) return;
+
+            _virtualCamera.m_Lens.FieldOfView = ZoomedInFOV;
+            _isZoomed = true;
+        }
+
+        public void ZoomOut()
+        {
+            if (_virtualCamera == null) return;
+
+            _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
+            _isZoomed = false;
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

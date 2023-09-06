@@ -17,9 +17,9 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        bool isActive = _fire.ReadValue<float>() > 0.5;
+        bool isPressed = _fire.ReadValue<float>() > 0.5 ;
 
-        if (isActive && _weaponCooldownTimer <= 0)
+        if (isPressed && _weaponCooldownTimer <= 0)
         {
             Shoot();
         }
