@@ -10,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     Vector3 _initialPosition;
     float _distanceToTarget = Mathf.Infinity;
     float _chasePersistTimer = INITIAL_CHASE_TIME;
+    float _turnSpeed = 5;
     bool _isChasing = false;
 
     static float INITIAL_CHASE_TIME = 5f;
@@ -67,6 +68,7 @@ public class EnemyAI : MonoBehaviour
 
         if (_distanceToTarget <= _navMeshAgent.stoppingDistance)
         {
+            FaceTarget();
             AttackTarget();
         }
     }
@@ -120,6 +122,14 @@ public class EnemyAI : MonoBehaviour
     {
         GetComponent<Animator>().SetBool(ATTACK, false);
         GetComponent<Animator>().SetTrigger(IDLE);
+    }
+
+    private void FaceTarget()
+    {
+        Vector3 direction = (_target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
+
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * _turnSpeed);
     }
 
     private void SetPosition(Vector3 position)
