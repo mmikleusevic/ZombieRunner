@@ -21,6 +21,7 @@ namespace StarterAssets
         public float SprintSpeed = 6.0f;
         [Tooltip("Rotation speed of the character")]
         public float RotationSpeed = 1.0f;
+        public float DefaultRotationSpeed = 1.0f;
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
 
@@ -118,6 +119,7 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
             _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private void Update()
@@ -277,7 +279,8 @@ namespace StarterAssets
         {
             if (_virtualCamera == null) return;
 
-            _virtualCamera.m_Lens.FieldOfView = ZoomedInFOV;
+            DecreaseFOV();
+            DecreaseSensitivity();
             _isZoomed = true;
         }
 
@@ -285,13 +288,36 @@ namespace StarterAssets
         {
             if (_virtualCamera == null) return;
 
-            ResetFOV();
+            IncreaseFOV();
+            IncreaseSensitivity();
             _isZoomed = false;
         }
 
-        public void ResetFOV()
+        public void ResetSettings()
+        {
+            IncreaseFOV();
+            IncreaseSensitivity();
+            this.enabled = false;
+        }
+
+        private void DecreaseFOV()
+        {
+            _virtualCamera.m_Lens.FieldOfView = ZoomedInFOV;
+        }
+
+        private void IncreaseFOV()
         {
             _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
+        }
+
+        private void IncreaseSensitivity()
+        {
+            RotationSpeed = DefaultRotationSpeed;
+        }
+
+        private void DecreaseSensitivity()
+        {
+            RotationSpeed = 0.4f;
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)
