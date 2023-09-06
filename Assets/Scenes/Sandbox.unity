@@ -1235,6 +1235,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1226573540}
   m_CullTransparentMesh: 1
+--- !u!4 &1333947825 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5125172494421548048, guid: d42bf14ce76fb3a47b8a4bc58249bf5e, type: 3}
+  m_PrefabInstance: {fileID: 1390083926836037448}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1636073731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1462,10 +1467,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2214379264552216209, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
-      propertyPath: m_StoppingDistance
-      value: 0
-      objectReference: {fileID: 0}
+    - target: {fileID: 297333098229255290, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
+      propertyPath: _target
+      value: 
+      objectReference: {fileID: 1333947825}
     - target: {fileID: 2922332131050867614, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
       propertyPath: m_LocalPosition.x
       value: 38.49
@@ -1507,25 +1512,13 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4916049283821252619, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
-      propertyPath: m_Icon
-      value: 
-      objectReference: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
-    - target: {fileID: 4916049283821252619, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4916049283821252619, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7838347948840553699, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
       propertyPath: _target
       value: 
       objectReference: {fileID: 802362903}
-    - target: {fileID: 7838347948840553699, guid: 5f2e5242004da494e8b7e880b8f77e13, type: 3}
-      propertyPath: _chaseRange
-      value: 10
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
