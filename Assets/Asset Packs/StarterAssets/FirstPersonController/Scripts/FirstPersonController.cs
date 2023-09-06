@@ -257,7 +257,7 @@ namespace StarterAssets
             }
         }
 
-        public void ToggleZoom()
+        private void ToggleZoom()
         {
             if(_input.zoom)
             {
@@ -273,7 +273,7 @@ namespace StarterAssets
             _input.zoom = false;
         }
 
-        public void ZoomIn()
+        private void ZoomIn()
         {
             if (_virtualCamera == null) return;
 
@@ -281,12 +281,17 @@ namespace StarterAssets
             _isZoomed = true;
         }
 
-        public void ZoomOut()
+        private void ZoomOut()
         {
             if (_virtualCamera == null) return;
 
-            _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
+            ResetFOV();
             _isZoomed = false;
+        }
+
+        public void ResetFOV()
+        {
+            _virtualCamera.m_Lens.FieldOfView = ZoomedOutFOV;
         }
 
         private static float ClampAngle(float lfAngle, float lfMin, float lfMax)

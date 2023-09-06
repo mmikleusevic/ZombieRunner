@@ -14,7 +14,10 @@ public class DeathHandler : MonoBehaviour
 
     public void HandleDeath()
     {
-        GetComponent<FirstPersonController>().enabled = false;
+        FirstPersonController firstPersonController = GetComponent<FirstPersonController>();
+
+        firstPersonController.ResetFOV();
+        firstPersonController.enabled = false;
 
         _gameOverCanvas.enabled = true;
 
