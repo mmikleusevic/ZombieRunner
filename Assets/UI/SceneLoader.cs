@@ -12,7 +12,7 @@ public class SceneLoader : MonoBehaviour
 
     public void ReloadGame()
     {
-        Debug.Log("desilo se");
         SceneManager.LoadScene(0);
+        Time.timeScale = 1;
     }
 }

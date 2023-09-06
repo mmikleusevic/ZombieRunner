@@ -5516,8 +5516,9 @@ GameObject:
   - component: {fileID: 1857100252321090204}
   - component: {fileID: 2696497273716987628}
   - component: {fileID: 7837689163505342516}
+  - component: {fileID: 6921302610436111840}
   m_Layer: 8
-  m_Name: PlayerCapsule
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5742,6 +5743,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hitPoints: 100
+--- !u!114 &6921302610436111840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2696497273716987616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da90e93b5ab826d4cb581ca90188bdca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gameOverCanvas: {fileID: 0}
 --- !u!1 &4707426688671572760
 GameObject:
   m_ObjectHideFlags: 0
@@ -5752,7 +5766,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8781703786878710152}
   m_Layer: 0
-  m_Name: Player
+  m_Name: PlayerObject
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0

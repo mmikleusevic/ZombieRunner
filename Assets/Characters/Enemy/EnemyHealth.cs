@@ -2,17 +2,28 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] float _hitPoints = 100f;
+    [SerializeField] float _maxHitPoints = 100f;
+    float _currenthitPoints;
+
+    private void Start()
+    {
+        _currenthitPoints = _maxHitPoints;
+    }
 
     public void TakeDamage(float damage)
     {
-        _hitPoints -= damage;
+        BroadcastMessage(EnemyAI.ON_DAMAGE_RECEIVED_METHOD_NAME);
 
-        Debug.Log(_hitPoints);
+        _currenthitPoints -= damage;
 
-        if (_hitPoints <= 0)
+        if (_currenthitPoints <= 0)
         {
             Destroy(gameObject);
         }
+    }
+
+    public void ResetHealth()
+    {
+        _currenthitPoints = _maxHitPoints;
     }
 }

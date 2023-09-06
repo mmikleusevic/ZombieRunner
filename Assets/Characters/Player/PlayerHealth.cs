@@ -12,9 +12,7 @@ public class PlayerHealth : MonoBehaviour
 
         if( _hitPoints <= 0)
         {
-            Time.timeScale = 0;
-
-            //TODO player character death
+            GetComponent<DeathHandler>().HandleDeath();
         }
     }
 }

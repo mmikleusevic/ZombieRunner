@@ -7,21 +7,26 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] float _chaseRange = 10f;
 
     NavMeshAgent _navMeshAgent;
+    Animator _animator;
     Vector3 _initialPosition;
+
     float _distanceToTarget = Mathf.Infinity;
     float _chasePersistTimer = INITIAL_CHASE_TIME;
     float _turnSpeed = 5;
     bool _isChasing = false;
 
-    static float INITIAL_CHASE_TIME = 5f;
     static string IDLE = "Idle";
     static string MOVE = "Move";
     static string ATTACK = "Attack";
+    static float INITIAL_CHASE_TIME = 5f;
+    public static string ON_DAMAGE_RECEIVED_METHOD_NAME = nameof(OnDamageReceived);
+
 
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _initialPosition = transform.position;
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -33,6 +38,16 @@ public class EnemyAI : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _chaseRange);
+    }
+
+    public void OnDamageReceived()
+    {
+        bool isAttacking = GetComponent<Animator>().GetBool(ATTACK);
+
+        if (!isAttacking)
+        {
+            _isChasing = true;
+        }
     }
 
     private void ChasePlayer()
@@ -75,6 +90,13 @@ public class EnemyAI : MonoBehaviour
 
     private void PersistChase()
     {
+        bool isMoving = _animator.GetBool(MOVE);
+
+        if (!isMoving)
+        {
+            _animator.SetTrigger(MOVE);
+        }
+
         if (_chasePersistTimer > 0)
         {
             SetPosition(_target.position);
@@ -89,8 +111,9 @@ public class EnemyAI : MonoBehaviour
     private void Chase()
     {
         SetPosition(_target.position);
-        GetComponent<Animator>().SetTrigger(MOVE);
-        GetComponent<Animator>().SetBool(ATTACK, false);
+
+        _animator.SetTrigger(MOVE);
+        _animator.SetBool(ATTACK, false);
 
         _isChasing = true;
 
@@ -103,15 +126,15 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackTarget()
     {
-        GetComponent<Animator>().SetBool(ATTACK, true);
+        _animator.SetBool(ATTACK, true);
     }
 
     private void ReturnToInitialPosition()
     {
         _navMeshAgent.stoppingDistance = 0f;
 
-        GetComponent<Animator>().SetTrigger(MOVE);
-        GetComponent<Animator>().SetBool(ATTACK, false);
+        _animator.SetTrigger(MOVE);
+        _animator.SetBool(ATTACK, false);
 
         SetPosition(_initialPosition);
 
@@ -120,8 +143,10 @@ public class EnemyAI : MonoBehaviour
 
     private void Idle()
     {
-        GetComponent<Animator>().SetBool(ATTACK, false);
-        GetComponent<Animator>().SetTrigger(IDLE);
+        _animator.SetBool(ATTACK, false);
+        _animator.SetTrigger(IDLE);
+
+        GetComponent<EnemyHealth>().ResetHealth();
     }
 
     private void FaceTarget()
