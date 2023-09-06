@@ -117,7 +117,6 @@ public class EnemyAI : MonoBehaviour
 
         _isChasing = true;
 
-
         if (_chasePersistTimer < INITIAL_CHASE_TIME)
         {
             _chasePersistTimer = INITIAL_CHASE_TIME;

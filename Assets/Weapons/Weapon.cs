@@ -15,7 +15,6 @@ public class Weapon : MonoBehaviour
 
     static float COOLDOWN_TIME = 0.1f;
 
-
     private void Update()
     {
         bool isActive = _fire.ReadValue<float>() > 0.5;
