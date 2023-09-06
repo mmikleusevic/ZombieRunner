@@ -12,7 +12,9 @@ public class PlayerHealth : MonoBehaviour
 
         if( _hitPoints <= 0)
         {
-            Destroy(gameObject);
+            Time.timeScale = 0;
+
+            //TODO player character death
         }
     }
 }
