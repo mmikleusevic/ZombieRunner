@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -80,6 +81,7 @@ public class Weapon : MonoBehaviour
     void OnEnable()
     {
         _fire.Enable();
+        _canShoot = true;
     }
 
     void OnDisable()

@@ -1,10 +1,12 @@
 using StarterAssets;
+using System.Collections;
 using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int _currentWeapon = 0;
     StarterAssetsInputs _input;
+    float _switchTimeout = 0.33f;
 
     private void Start()
     {
@@ -22,13 +24,12 @@ public class WeaponSwitcher : MonoBehaviour
 
         if (previousWeapon != _currentWeapon)
         {
-            SetWeaponActive();
+            StartCoroutine(SetWeaponActive());
         }
     }
 
     private void ProcessKeyInput()
     {
-        Debug.Log(_input.changeWeaponThree);
         if (_input.changeWeaponOne)
         {
             _currentWeapon = 0;
@@ -72,7 +73,7 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
-    private void SetWeaponActive()
+    private IEnumerator SetWeaponActive()
     {
         int weaponIndex = 0;
 
@@ -80,6 +81,7 @@ public class WeaponSwitcher : MonoBehaviour
         {
             if (weaponIndex == _currentWeapon)
             {
+                yield return new WaitForSeconds(_switchTimeout);
                 weapon.gameObject.SetActive(true);
             }
             else

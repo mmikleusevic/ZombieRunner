@@ -2919,6 +2919,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerObject
       objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.data[1]._ammoType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.data[2]._ammoType
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.data[0]._ammoAmount
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.data[1]._ammoAmount
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6622117161458847125, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
+      propertyPath: _ammoSlot.Array.data[2]._ammoAmount
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6921302610436111840, guid: deabf182cd8625542afb53e1aaf6a204, type: 3}
       propertyPath: _gameOverCanvas
       value: 
