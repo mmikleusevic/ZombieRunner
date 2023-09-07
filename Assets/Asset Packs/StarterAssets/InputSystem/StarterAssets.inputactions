@@ -49,6 +49,42 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeWeaponOne",
+                    "type": "Button",
+                    "id": "f1b61d25-e1d2-4a01-bab7-c26263c36d5a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeWeaponTwo",
+                    "type": "Button",
+                    "id": "26c605b4-3400-4b94-aafd-f482ba4ec13e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeWeaponThree",
+                    "type": "Button",
+                    "id": "6e8c6e3d-eaf5-4888-9ea5-42d1f97710f9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Scroll",
+                    "type": "Value",
+                    "id": "909c4ff3-3724-45d4-8d56-87b12f684163",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -236,6 +272,50 @@
                     "processors": "",
                     "groups": "KeyboardMouse",
                     "action": "Zoom",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "177e3291-5e33-4eb4-9982-ccb176768e45",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ChangeWeaponOne",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d94c996-92c7-4ab6-9f2a-acfc50eeef9c",
+                    "path": "<Mouse>/scroll/y",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "Scroll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1ae6d8a8-151f-40a1-87e0-c936d99528ef",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ChangeWeaponTwo",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c551737e-4d85-48aa-a716-5d2c6becfa69",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ChangeWeaponThree",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

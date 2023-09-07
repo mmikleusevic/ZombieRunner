@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
@@ -31,6 +32,26 @@ namespace StarterAssets
         public void VirtualZoomInput(bool virtualZoomState)
         {
             starterAssetsInputs.ZoomInput(virtualZoomState);
+        }
+
+        public void VirtualChangeWeaponOneInput(bool virtualChangeWeaponOneState)
+        {
+            starterAssetsInputs.ChangeWeaponOneInput(virtualChangeWeaponOneState);
+        }
+
+        public void VirtualChangeWeaponTwoInput(bool virtualChangeWeaponTwoState)
+        {
+            starterAssetsInputs.ChangeWeaponTwoInput(virtualChangeWeaponTwoState);
+        }
+
+        public void VirtualChangeWeaponThreeInput(bool virtualChangeWeaponThreeState)
+        {
+            starterAssetsInputs.ChangeWeaponThreeInput(virtualChangeWeaponThreeState);
+        }
+
+        public void VirtualScrollInput(float virtualScrollDirection)
+        {
+            starterAssetsInputs.ScrollInput(virtualScrollDirection);
         }
     }
 
