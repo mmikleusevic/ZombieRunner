@@ -30,4 +30,13 @@ public class Ammo : MonoBehaviour
 
         ammoSlot._ammoAmount--;
     }
+
+    public void IncreaseCurrentAmmo(AmmoType ammoType, int ammoAmount)
+    {
+        AmmoSlot ammoSlot = _ammoSlot.FirstOrDefault(a => a._ammoType == ammoType);
+
+        if (ammoSlot == null) return;
+
+        ammoSlot._ammoAmount += ammoAmount;
+    }
 }
