@@ -1,17 +1,10 @@
 using StarterAssets;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int _currentWeapon = 0;
     StarterAssetsInputs _input;
-
-    float _changeWeaponTime = 0.5f;
 
     private void Start()
     {
@@ -27,7 +20,7 @@ public class WeaponSwitcher : MonoBehaviour
         ProcessKeyInput();
         ProcessScrollWheel();
 
-        if(previousWeapon != _currentWeapon)
+        if (previousWeapon != _currentWeapon)
         {
             SetWeaponActive();
         }
@@ -66,7 +59,7 @@ public class WeaponSwitcher : MonoBehaviour
                 _currentWeapon++;
             }
         }
-        else if(_input.scroll == -120)
+        else if (_input.scroll == -120)
         {
             if (_currentWeapon <= 0)
             {
@@ -85,7 +78,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         foreach (Transform weapon in transform)
         {
-            if(weaponIndex == _currentWeapon)
+            if (weaponIndex == _currentWeapon)
             {
                 weapon.gameObject.SetActive(true);
             }

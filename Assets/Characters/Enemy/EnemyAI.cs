@@ -66,7 +66,7 @@ public class EnemyAI : MonoBehaviour
         {
             ReturnToInitialPosition();
         }
-        else if(!_isChasing)
+        else if (!_isChasing)
         {
             Idle();
         }

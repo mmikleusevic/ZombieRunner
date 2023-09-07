@@ -261,7 +261,7 @@ namespace StarterAssets
 
         private void ToggleZoom()
         {
-            if(_input.zoom)
+            if (_input.zoom)
             {
                 if (_isZoomed)
                 {

@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        bool isPressed = _fire.ReadValue<float>() > 0.5 ;
+        bool isPressed = _fire.ReadValue<float>() > 0.5;
 
         if (isPressed && _canShoot)
         {
@@ -29,7 +29,7 @@ public class Weapon : MonoBehaviour
     {
         _canShoot = false;
 
-        if(_ammoSlot.GetCurrentAmmo() > 0)
+        if (_ammoSlot.GetCurrentAmmo() > 0)
         {
             PlayMuzzleFlash();
             ProcessRaycast();
