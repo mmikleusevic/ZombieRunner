@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] float _range = 100f;
     [SerializeField] float _damage = 30f;
     [SerializeField] GameObject _hitVFX;
+    [SerializeField] Ammo _ammoSlot;
 
     float _weaponCooldownTimer = COOLDOWN_TIME;
 
@@ -19,7 +20,7 @@ public class Weapon : MonoBehaviour
     {
         bool isPressed = _fire.ReadValue<float>() > 0.5 ;
 
-        if (isPressed && _weaponCooldownTimer <= 0)
+        if (isPressed && _weaponCooldownTimer <= 0 && _ammoSlot.GetCurrentAmmo() > 0)
         {
             Shoot();
         }
@@ -31,6 +32,7 @@ public class Weapon : MonoBehaviour
     {
         PlayMuzzleFlash();
         ProcessRaycast();
+        ReduceAmmo();
     }
 
     private void PlayMuzzleFlash()
@@ -57,6 +59,11 @@ public class Weapon : MonoBehaviour
         {
             return;
         }
+    }
+
+    private void ReduceAmmo()
+    {
+        _ammoSlot.ReduceCurrentAmmo();
     }
 
     private void ProccessHitImpact(RaycastHit hit)
