@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 7955643567871304250}
   - component: {fileID: 3648478067926783294}
   m_Layer: 0
-  m_Name: Carbine
+  m_Name: Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -361,7 +361,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: -0, w: -0.7071068}
   m_LocalPosition: {x: 0.139, y: -0.187, z: 0.789}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7955643567873073368}
@@ -400,7 +400,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3810dfc4740f3a5489a59cc76faa91b3, type: 2}
+  - {fileID: 2100000, guid: 1121aca908a008f4babdb81c8576a9e2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -454,10 +454,10 @@ MonoBehaviour:
   _muzzleFlash: {fileID: 1940207403311640985}
   _FPCamera: {fileID: 0}
   _range: 100
-  _damage: 30
+  _damage: 10
   _hitVFX: {fileID: 4170211166564212475, guid: c0afdbdb1803a3242974df91a270faed, type: 3}
   _ammoSlot: {fileID: 0}
-  _weaponCooldownTimer: 1
+  _weaponCooldownTimer: 0.3
 --- !u!1 &7955643567873309948
 GameObject:
   m_ObjectHideFlags: 0
@@ -669,6 +669,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 113037269559750531, guid: 4a60d8477aafac045a1f56d3a60c7813, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: f0a5fc27b20247641a2f6e71a8d72ee1, type: 2}
     - target: {fileID: 3350055855090824723, guid: 4a60d8477aafac045a1f56d3a60c7813, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.23139995
