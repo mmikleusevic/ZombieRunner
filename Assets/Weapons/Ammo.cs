@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 
 public class Ammo : MonoBehaviour
@@ -12,14 +13,21 @@ public class Ammo : MonoBehaviour
         public int _ammoAmount;
     }
 
-    public int GetCurrentAmmo()
+    public int GetCurrentAmmo(AmmoType ammoType)
     {
-        //return _ammoAmount;
-        return 10;
+        AmmoSlot ammoSlot = _ammoSlot.FirstOrDefault(a => a._ammoType == ammoType);
+
+        if (ammoSlot == null) return 0;
+
+        return ammoSlot._ammoAmount;
     }
 
-    public void ReduceCurrentAmmo()
+    public void ReduceCurrentAmmo(AmmoType ammoType)
     {
-        //_ammoAmount--;
+        AmmoSlot ammoSlot = _ammoSlot.FirstOrDefault(a => a._ammoType == ammoType);
+
+        if (ammoSlot == null) return;
+
+        ammoSlot._ammoAmount--;
     }
 }

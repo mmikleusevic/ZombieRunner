@@ -5750,6 +5750,7 @@ MonoBehaviour:
   _damage: 30
   _hitVFX: {fileID: 4170211166564212475, guid: c0afdbdb1803a3242974df91a270faed, type: 3}
   _ammoSlot: {fileID: 6622117161458847125}
+  _ammoType: 2
   _weaponCooldownTimer: 0.2
 --- !u!1 &5234121909388585156
 GameObject:
@@ -6489,6 +6490,10 @@ PrefabInstance:
       propertyPath: _ammoSlot
       value: 
       objectReference: {fileID: 6622117161458847125}
+    - target: {fileID: 3648478067926783294, guid: f8b262b9e012584429214693a250e203, type: 3}
+      propertyPath: _ammoType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7955643567873073370, guid: f8b262b9e012584429214693a250e203, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.139
