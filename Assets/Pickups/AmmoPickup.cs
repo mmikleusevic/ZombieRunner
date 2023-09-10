@@ -12,7 +12,7 @@ public class AmmoPickup : MonoBehaviour
     {
         if (other.CompareTag(PLAYER))
         {
-            FindObjectOfType<Ammo>().IncreaseCurrentAmmo(_ammoType, _ammoAmount);
+            FindFirstObjectByType<Ammo>().IncreaseCurrentAmmo(_ammoType, _ammoAmount);
             Destroy(gameObject);
         }
     }

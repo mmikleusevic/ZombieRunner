@@ -1,5 +1,7 @@
 using StarterAssets;
+using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class WeaponSwitcher : MonoBehaviour
@@ -8,23 +10,36 @@ public class WeaponSwitcher : MonoBehaviour
     StarterAssetsInputs _input;
     float _switchTimeout = 0.33f;
 
+    private event Action ListenToInput;
+
+    private void OnEnable()
+    {
+        ListenToInput += ProcessKeyInput;
+        ListenToInput += ProcessScrollWheel;
+    }
+
+    private void OnDestroy()
+    {
+        ListenToInput -= ProcessKeyInput;
+        ListenToInput -= ProcessScrollWheel;
+    }
+
     private void Start()
     {
-        FirstPersonController fpController = FindObjectOfType<FirstPersonController>();
+        FirstPersonController fpController = FindFirstObjectByType<FirstPersonController>();
         _input = fpController.GetComponent<StarterAssetsInputs>();
-        SetWeaponActive();
+        Task.WhenAll(SetWeaponActive());
     }
 
     private void Update()
     {
         int previousWeapon = _currentWeapon;
 
-        ProcessKeyInput();
-        ProcessScrollWheel();
+        ListenToInput?.Invoke();
 
         if (previousWeapon != _currentWeapon)
         {
-            StartCoroutine(SetWeaponActive());
+            Task.WhenAll(SetWeaponActive());
         }
     }
 
@@ -73,15 +88,16 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
-    private IEnumerator SetWeaponActive()
+    private async Task SetWeaponActive()
     {
         int weaponIndex = 0;
+
+        await Awaitable.WaitForSecondsAsync(_switchTimeout, destroyCancellationToken);
 
         foreach (Transform weapon in transform)
         {
             if (weaponIndex == _currentWeapon)
             {
-                yield return new WaitForSeconds(_switchTimeout);
                 weapon.gameObject.SetActive(true);
             }
             else

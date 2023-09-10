@@ -9,7 +9,7 @@ public class Ammo : MonoBehaviour
     [Serializable]
     private class AmmoSlot
     {
-        public AmmoType _ammoType;
+        public AmmoType _ammoType = 0;
         public int _ammoAmount;
     }
 

@@ -8,7 +8,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Start()
     {
-        _target = FindObjectOfType<PlayerHealth>();
+        _target = FindFirstObjectByType<PlayerHealth>();
     }
 
     public void AttackHitEvent()
