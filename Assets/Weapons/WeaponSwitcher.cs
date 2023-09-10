@@ -9,6 +9,7 @@ public class WeaponSwitcher : MonoBehaviour
     [SerializeField] int _currentWeapon = 0;
     StarterAssetsInputs _input;
     float _switchTimeout = 0.33f;
+    int timer = 0;
 
     private event Action ListenToInput;
 
@@ -28,7 +29,7 @@ public class WeaponSwitcher : MonoBehaviour
     {
         FirstPersonController fpController = FindFirstObjectByType<FirstPersonController>();
         _input = fpController.GetComponent<StarterAssetsInputs>();
-        Task.WhenAll(SetWeaponActive());
+        SetWeaponActive();
     }
 
     private void Update()
@@ -39,7 +40,7 @@ public class WeaponSwitcher : MonoBehaviour
 
         if (previousWeapon != _currentWeapon)
         {
-            Task.WhenAll(SetWeaponActive());
+            SetWeaponActive();
         }
     }
 
@@ -88,11 +89,9 @@ public class WeaponSwitcher : MonoBehaviour
         }
     }
 
-    private async Task SetWeaponActive()
+    private void SetWeaponActive()
     {
         int weaponIndex = 0;
-
-        await Awaitable.WaitForSecondsAsync(_switchTimeout, destroyCancellationToken);
 
         foreach (Transform weapon in transform)
         {
