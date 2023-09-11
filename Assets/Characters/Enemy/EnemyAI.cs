@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
     static string MOVE = "Move";
     static string ATTACK = "Attack";
     static float INITIAL_CHASE_TIME = 5f;
+    static float STOPPING_DISTANCE = 2f;
     public static string ON_DAMAGE_RECEIVED_METHOD_NAME = nameof(OnDamageReceived);
 
 
@@ -74,7 +75,7 @@ public class EnemyAI : MonoBehaviour
 
     private void EngageTarget()
     {
-        _navMeshAgent.stoppingDistance = 4f;
+        _navMeshAgent.stoppingDistance = STOPPING_DISTANCE;
 
         if (_distanceToTarget > _navMeshAgent.stoppingDistance)
         {
