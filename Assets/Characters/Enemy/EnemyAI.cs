@@ -3,11 +3,12 @@ using UnityEngine.AI;
 
 public class EnemyAI : MonoBehaviour
 {
-    [SerializeField] Transform _target;
     [SerializeField] float _chaseRange = 10f;
 
     NavMeshAgent _navMeshAgent;
+    EnemyHealth _enemyHealth;
     Animator _animator;
+    Transform _target;
     Vector3 _initialPosition;
 
     float _distanceToTarget = Mathf.Infinity;
@@ -22,17 +23,31 @@ public class EnemyAI : MonoBehaviour
     static float STOPPING_DISTANCE = 2f;
     public static string ON_DAMAGE_RECEIVED_METHOD_NAME = nameof(OnDamageReceived);
 
-
     private void Start()
     {
         _navMeshAgent = GetComponent<NavMeshAgent>();
         _initialPosition = transform.position;
         _animator = GetComponent<Animator>();
+        _enemyHealth = GetComponent<EnemyHealth>();
+        _target = FindFirstObjectByType<PlayerHealth>().transform;
     }
 
     private void Update()
     {
-        ChasePlayer();
+        if (_enemyHealth.IsDead())
+        {
+            DisableControls();
+        }
+        else
+        {
+            ChasePlayer();
+        }
+    }
+
+    private void DisableControls()
+    {
+        enabled = false;
+        _navMeshAgent.enabled = false;
     }
 
     private void OnDrawGizmosSelected()

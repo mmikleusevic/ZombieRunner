@@ -1,6 +1,6 @@
 public enum AmmoType
 {
     Parabellum,
-    ShotgunShells,
+    Shells,
     Winchester
 }

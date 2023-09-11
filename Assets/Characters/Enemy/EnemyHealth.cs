@@ -6,13 +6,17 @@ public class EnemyHealth : MonoBehaviour
     float _currenthitPoints;
 
     bool isDead = false;
-    public bool IsDead {  get { return isDead; } }
 
     static string DIE = "Die";
 
     private void Start()
     {
         _currenthitPoints = _maxHitPoints;
+    }
+
+    public bool IsDead()
+    {
+        return isDead;
     }
 
     public void TakeDamage(float damage)
