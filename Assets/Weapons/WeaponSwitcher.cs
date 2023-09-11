@@ -91,6 +91,7 @@ public class WeaponSwitcher : MonoBehaviour
 
     private void SetWeaponActive()
     {
+        Debug.Log("a");
         int weaponIndex = 0;
 
         foreach (Transform weapon in transform)
