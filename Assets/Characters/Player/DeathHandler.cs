@@ -13,7 +13,7 @@ public class DeathHandler : MonoBehaviour
     public void HandleDeath()
     {
         GetComponent<FirstPersonController>().ResetSettings();
-
+        GetComponentInChildren<WeaponSwitcher>().enabled = false;
         _gameOverCanvas.enabled = true;
 
         Time.timeScale = 0;

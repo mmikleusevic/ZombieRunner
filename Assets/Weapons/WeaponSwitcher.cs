@@ -8,8 +8,6 @@ public class WeaponSwitcher : MonoBehaviour
 {
     [SerializeField] int _currentWeapon = 0;
     StarterAssetsInputs _input;
-    float _switchTimeout = 0.33f;
-    int timer = 0;
 
     private event Action ListenToInput;
 

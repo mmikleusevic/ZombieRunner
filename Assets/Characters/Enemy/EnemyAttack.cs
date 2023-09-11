@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -11,10 +12,11 @@ public class EnemyAttack : MonoBehaviour
         _target = FindFirstObjectByType<PlayerHealth>();
     }
 
-    public void AttackHitEvent()
+    public async Task AttackHitEvent()
     {
         if (_target == null) return;
 
         _target.TakeDamage(_damage);
+        await _target.GetComponent<DisplayDamage>().ShowDamageImpact();
     }
 }

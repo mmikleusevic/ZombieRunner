@@ -101,7 +101,7 @@ Camera:
     height: 1
   near clip plane: 0.2
   far clip plane: 500
-  field of view: 20
+  field of view: 40
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -696,6 +696,7 @@ MonoBehaviour:
   _ammoSlot: {fileID: 2416973072684759933}
   _ammoType: 2
   _weaponCooldownTimer: 0.2
+  _ammoText: {fileID: 0}
 --- !u!1 &3661420347078008364
 GameObject:
   m_ObjectHideFlags: 0
@@ -881,6 +882,7 @@ GameObject:
   - component: {fileID: 1901016299279862536}
   - component: {fileID: 2676847372551473497}
   - component: {fileID: 2416973072684759933}
+  - component: {fileID: 525539732802235253}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -1175,6 +1177,20 @@ MonoBehaviour:
     _ammoAmount: 5
   - _ammoType: 2
     _ammoAmount: 3
+--- !u!114 &525539732802235253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6847527206302720008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04aa73304e596614ba0721fd7c4d6ae2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _impactCanvas: {fileID: 0}
+  _impactTime: 0.3
 --- !u!1 &7082859740132783134
 GameObject:
   m_ObjectHideFlags: 0
